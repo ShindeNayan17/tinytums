@@ -1,0 +1,9 @@
+Gate Question,If YES,V1 Decision,Required Next Step
+Does the software automatically interpret patient data as clinically abnormal?,Clinical interpretation present,Hold outside V1,Regulatory classification review before release
+"Does it assign urgency, priority, or triage based on health data?",Drives clinical management,Hold outside V1,CDSCO/MDSW assessment + validation plan
+Does it diagnose or suggest a disease/condition?,Diagnostic purpose,Hold outside V1,Medical-device pathway assessment
+Does it predict deterioration or future clinical risk?,Predictive medical purpose,Hold outside V1,Medical-device classification + clinical evidence
+"Does it recommend a medicine, dose, treatment, or disease-specific management?",Treatment support,Hold outside V1,Regulatory + clinician-safety review
+"Does it only store, display, graph, count, range, organise, or factually summarise source data?",No clinical interpretation,Potentially allowed in V1,Product/privacy/clinical QA
+Can the clinician drill down from any summary to the original source record?,Source transparency preserved,Required design principle,Implement provenance links/audit trail
+Was a clinically relevant field entered by the mother but not yet verified?,Self-reported data,Show as unverified,Do not present as authoritative clinical record

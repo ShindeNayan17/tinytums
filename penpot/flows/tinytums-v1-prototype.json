@@ -1,0 +1,186 @@
+{
+  "product": "TinyTums V1",
+  "generated": "2026-09-18",
+  "note": "Penpot Play interactions. Same-page edges are wired on master boards. Cross-page edges cannot use navigate-to (Penpot page-scoped). Walk A/B/C are cloned onto dedicated pages so those demos click end-to-end. Clones are copies — edit the original board, then re-clone if the walk must match.",
+  "counts": {
+    "samePageWired": 89,
+    "skippedCrossPage": 23,
+    "walkLinks": 15
+  },
+  "iosMotherTabs": {
+    "Home": "iOS / Dashboard hero",
+    "Care": "iOS / Search hospital",
+    "Child": "iOS / Children list",
+    "You": "iOS / You hub",
+    "status": "skipped-cross-page",
+    "note": "Tab targets live on different Penpot pages. Defined in ui-map.json iosMotherTabs."
+  },
+  "whoAddsWhat": {
+    "caregiver": "Mother only. You hub → Caregivers list → Invite caregiver → SMS. Invitee uses page 07 login.",
+    "child": "Mother only. Child tab → Children list → Add child. Or Delivery → child."
+  },
+  "play": {
+    "walkA": { "page": "13 Walk A mother", "flow": "Walk A · Mother home to pre-visit", "startBoard": "iOS / Dashboard hero · Walk A" },
+    "walkB": { "page": "14 Walk B clinician", "flow": "Walk B · Doctor queue to Rx", "startBoard": "Web / Ops dashboard · Walk B" },
+    "walkC": { "page": "15 Walk C ABDM consent", "flow": "Walk C · ABHA consent HIU", "startBoard": "iOS / OTP verify · Walk C" }
+  },
+  "howToRerun": [
+    "Keep Penpot tab focused.",
+    "Strip existing interactions on a board before re-adding.",
+    "addInteraction('click', { type: 'navigate-to', destination: board }) only works if destination is on the same page.",
+    "Cross-page copy: clone on source → library.createComponent([clone]) → open dest → component.instance() → detach → delete temp clone."
+  ],
+  "walks": [
+    {
+      "id": "walkA",
+      "page": "13 Walk A mother",
+      "status": "wired",
+      "path": [
+        "iOS / Dashboard hero · Walk A",
+        "iOS / BP · Walk A",
+        "iOS / Book appointment · Walk A",
+        "iOS / Pre-visit packet · Walk A"
+      ],
+      "links": [
+        { "from": "iOS / Dashboard hero · Walk A", "to": "iOS / BP · Walk A", "via": "Log BP", "anchor": "btn" },
+        { "from": "iOS / BP · Walk A", "to": "iOS / Book appointment · Walk A", "via": "Log reading", "anchor": "btn" },
+        { "from": "iOS / Book appointment · Walk A", "to": "iOS / Pre-visit packet · Walk A", "via": "Confirm", "anchor": "btn" }
+      ]
+    },
+    {
+      "id": "walkB",
+      "page": "14 Walk B clinician",
+      "status": "wired",
+      "path": [
+        "Web / Ops dashboard · Walk B",
+        "Web / Factual summary · Walk B",
+        "Web / Encounter form · Walk B",
+        "Web / Verify field · Walk B",
+        "Web / Prescription · Walk B"
+      ],
+      "links": [
+        { "from": "Web / Ops dashboard · Walk B", "to": "Web / Factual summary · Walk B", "via": "queue", "anchor": "t" },
+        { "from": "Web / Factual summary · Walk B", "to": "Web / Encounter form · Walk B", "via": "Start encounter", "anchor": "board" },
+        { "from": "Web / Encounter form · Walk B", "to": "Web / Verify field · Walk B", "via": "Review field", "anchor": "row" },
+        { "from": "Web / Verify field · Walk B", "to": "Web / Prescription · Walk B", "via": "Verify", "anchor": "t" }
+      ]
+    },
+    {
+      "id": "walkC",
+      "page": "15 Walk C ABDM consent",
+      "status": "wired",
+      "path": [
+        "iOS / OTP verify · Walk C",
+        "iOS / ABHA hub · Walk C",
+        "iOS / Link ABHA · Walk C",
+        "iOS / ABHA OTP KYC · Walk C",
+        "iOS / ABHA linked · Walk C",
+        "iOS / Discover records · Walk C",
+        "iOS / Consent request · Walk C",
+        "iOS / Consent approve deny · Walk C",
+        "Web / HIU consent granted · Walk C"
+      ],
+      "links": [
+        { "from": "iOS / OTP verify · Walk C", "to": "iOS / ABHA hub · Walk C", "via": "Verify", "anchor": "t" },
+        { "from": "iOS / ABHA hub · Walk C", "to": "iOS / Link ABHA · Walk C", "via": "Link existing", "anchor": "btn" },
+        { "from": "iOS / Link ABHA · Walk C", "to": "iOS / ABHA OTP KYC · Walk C", "via": "Continue", "anchor": "btn" },
+        { "from": "iOS / ABHA OTP KYC · Walk C", "to": "iOS / ABHA linked · Walk C", "via": "Verify ABHA", "anchor": "btn" },
+        { "from": "iOS / ABHA linked · Walk C", "to": "iOS / Discover records · Walk C", "via": "Discover", "anchor": "board" },
+        { "from": "iOS / Discover records · Walk C", "to": "iOS / Consent request · Walk C", "via": "facility", "anchor": "btn" },
+        { "from": "iOS / Consent request · Walk C", "to": "iOS / Consent approve deny · Walk C", "via": "Review", "anchor": "board" },
+        { "from": "iOS / Consent approve deny · Walk C", "to": "Web / HIU consent granted · Walk C", "via": "Approve", "anchor": "btn" }
+      ]
+    }
+  ],
+  "samePageWired": [
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Splash", "to": "iOS / Create account", "via": "Get started", "anchor": "btn", "status": "wired" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Splash", "to": "iOS / Sign in", "via": "Sign in", "anchor": "t", "status": "wired" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Sign in", "to": "iOS / OTP verify", "via": "Send OTP", "anchor": "btn", "status": "wired" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Create account", "to": "iOS / OTP verify", "via": "Continue", "anchor": "btn", "status": "wired" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / OTP verify", "to": "iOS / Email optional", "via": "New user", "anchor": "btn", "status": "wired" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / OTP verify", "to": "iOS / State picker", "via": "Verify", "anchor": "t", "status": "wired" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Email optional", "to": "iOS / State picker", "via": "Skip or save", "anchor": "t", "status": "wired" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / State picker", "to": "iOS / Dashboard hero", "via": "Pregnant", "anchor": "t", "status": "wired" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / State picker", "to": "iOS / Dashboard TTC", "via": "Trying to conceive", "anchor": "t", "status": "wired" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / State picker", "to": "iOS / Dashboard postpartum", "via": "Postpartum", "anchor": "t", "status": "wired" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / State picker", "to": "iOS / Pregnancy loss state", "via": "Pregnancy loss", "anchor": "t", "status": "wired" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Dashboard hero", "to": "iOS / No primary OBGY", "via": "No primary", "anchor": "btn", "status": "wired" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Dashboard hero", "to": "iOS / Clinic access", "via": "access", "anchor": "btn", "status": "wired" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Access denied", "to": "iOS / Clinic access", "via": "Request granted", "anchor": "btn", "status": "wired" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / No primary OBGY", "to": "iOS / Clinic access", "via": "Find doctor", "anchor": "btn", "status": "wired" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / Profile", "to": "iOS / Verified lock", "via": "Verified field", "anchor": "row", "status": "wired" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / Profile", "to": "iOS / Privacy consent", "via": "Privacy", "anchor": "row", "status": "wired" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / Profile", "to": "iOS / Privacy + ABDM row", "via": "ABDM", "anchor": "row", "status": "wired" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / Verified lock", "to": "iOS / Correction request", "via": "Request correction", "anchor": "t", "status": "wired" },
+    { "page": "04 iOS Track + mind", "from": "iOS / BP", "to": "iOS / Log BP sheet", "via": "Quick log", "anchor": "btn", "status": "wired" },
+    { "page": "04 iOS Track + mind", "from": "iOS / PND intro", "to": "iOS / PND questions", "via": "Begin", "anchor": "btn", "status": "wired" },
+    { "page": "04 iOS Track + mind", "from": "iOS / PND questions", "to": "iOS / PND result", "via": "Next", "anchor": "btn", "status": "wired" },
+    { "page": "05 iOS Child", "from": "iOS / Children list", "to": "iOS / Child home", "via": "Open Aarav", "anchor": "t", "status": "wired" },
+    { "page": "05 iOS Child", "from": "iOS / Child home", "to": "iOS / Growth", "via": "Growth", "anchor": "row", "status": "wired" },
+    { "page": "05 iOS Child", "from": "iOS / Child home", "to": "iOS / Vaccines", "via": "Vaccines", "anchor": "row", "status": "wired" },
+    { "page": "05 iOS Child", "from": "iOS / Child home", "to": "iOS / Milestones", "via": "Milestones", "anchor": "row", "status": "wired" },
+    { "page": "05 iOS Child", "from": "iOS / Child home", "to": "iOS / Activities", "via": "Activities", "anchor": "row", "status": "wired" },
+    { "page": "06 iOS Care network", "from": "iOS / Search hospital", "to": "iOS / Doctor at institution", "via": "Pick hospital", "anchor": "t", "status": "wired" },
+    { "page": "06 iOS Care network", "from": "iOS / Search hospital", "to": "iOS / Search doctor", "via": "Search by doctor", "anchor": "t", "status": "wired" },
+    { "page": "06 iOS Care network", "from": "iOS / Search doctor", "to": "iOS / Doctor at institution", "via": "Pick Doctor", "anchor": "t", "status": "wired" },
+    { "page": "06 iOS Care network", "from": "iOS / Doctor at institution", "to": "iOS / Book appointment", "via": "Connect", "anchor": "t", "status": "wired" },
+    { "page": "06 iOS Care network", "from": "iOS / Invite doctor", "to": "iOS / Invite sent", "via": "Send invite", "anchor": "t", "status": "wired" },
+    { "page": "06 iOS Care network", "from": "iOS / Book appointment", "to": "iOS / Pre-visit packet", "via": "Confirm slot", "anchor": "btn", "status": "wired" },
+    { "page": "06 iOS Care network", "from": "iOS / Book appointment", "to": "iOS / Teleconsult", "via": "Teleconsult", "anchor": "t", "status": "wired" },
+    { "page": "06 iOS Care network", "from": "iOS / Pre-visit packet", "to": "iOS / After visit", "via": "After visit", "anchor": "t", "status": "wired" },
+    { "page": "07 iOS Caregiver", "from": "iOS / Caregiver login", "to": "iOS / Caregiver OTP", "via": "Send OTP", "anchor": "btn", "status": "wired" },
+    { "page": "07 iOS Caregiver", "from": "iOS / Caregiver OTP", "to": "iOS / Caregiver home", "via": "Continue", "anchor": "btn", "status": "wired" },
+    { "page": "08 Web Ops + patients", "from": "Web / Login", "to": "Web / Staff OTP", "via": "Send OTP", "anchor": "btn", "status": "wired" },
+    { "page": "08 Web Ops + patients", "from": "Web / Staff OTP", "to": "Web / Workspace picker", "via": "Verify", "anchor": "vb", "status": "wired" },
+    { "page": "08 Web Ops + patients", "from": "Web / Workspace skip", "to": "Web / Ops dashboard", "via": "Auto enter", "anchor": "t", "status": "wired" },
+    { "page": "08 Web Ops + patients", "from": "Web / Workspace picker", "to": "Web / Ops dashboard", "via": "Select Role", "anchor": "t", "status": "wired" },
+    { "page": "08 Web Ops + patients", "from": "Web / Ops dashboard", "to": "Web / Workspace picker", "via": "Header switch", "anchor": "t", "status": "wired" },
+    { "page": "08 Web Ops + patients", "from": "Web / Ops dashboard", "to": "Web / Patient master", "via": "Patients", "anchor": "t", "status": "wired" },
+    { "page": "08 Web Ops + patients", "from": "Web / Patient master", "to": "Web / Patient chart", "via": "Open Priya", "anchor": "row", "status": "wired" },
+    { "page": "09 Web Encounter", "from": "Web / Factual summary", "to": "Web / Encounter form", "via": "Start encounter", "anchor": "board", "status": "wired" },
+    { "page": "09 Web Encounter", "from": "Web / Encounter form", "to": "Web / Verify field", "via": "Review field", "anchor": "row", "status": "wired" },
+    { "page": "09 Web Encounter", "from": "Web / Encounter form", "to": "Web / Prescription", "via": "Treatment shortcut", "anchor": "row", "status": "wired" },
+    { "page": "09 Web Encounter", "from": "Web / Verify field", "to": "Web / Prescription", "via": "Verify and lock", "anchor": "t", "status": "wired" },
+    { "page": "10 Web Admission + roles", "from": "Web / Admit", "to": "Web / Admission chart", "via": "Open inpatient", "anchor": "btn", "status": "wired" },
+    { "page": "10 Web Admission + roles", "from": "Web / Admit", "to": "Web / Care team assign", "via": "Assign staff", "anchor": "t", "status": "wired" },
+    { "page": "10 Web Admission + roles", "from": "Web / Care team assign", "to": "Web / Nurse role", "via": "Nurse", "anchor": "t", "status": "wired" },
+    { "page": "10 Web Admission + roles", "from": "Web / Care team assign", "to": "Web / Junior doctor", "via": "Junior", "anchor": "t", "status": "wired" },
+    { "page": "10 Web Admission + roles", "from": "Web / Admin staff", "to": "Web / Care team assign", "via": "Invite named", "anchor": "btn", "status": "wired" },
+    { "page": "11 iOS ABDM / ABHA", "from": "iOS / ABHA hub", "to": "iOS / Create ABHA", "via": "Create ABHA", "anchor": "btn", "status": "wired" },
+    { "page": "11 iOS ABDM / ABHA", "from": "iOS / ABHA hub", "to": "iOS / Link ABHA", "via": "Link existing", "anchor": "btn", "status": "wired" },
+    { "page": "11 iOS ABDM / ABHA", "from": "iOS / ABHA hub", "to": "iOS / Skip ABHA", "via": "Skip for now", "anchor": "t", "status": "wired" },
+    { "page": "11 iOS ABDM / ABHA", "from": "iOS / Link ABHA", "to": "iOS / ABHA OTP KYC", "via": "Continue", "anchor": "btn", "status": "wired" },
+    { "page": "11 iOS ABDM / ABHA", "from": "iOS / ABHA OTP KYC", "to": "iOS / ABHA linked", "via": "Verify ABHA", "anchor": "btn", "status": "wired" },
+    { "page": "11 iOS ABDM / ABHA", "from": "iOS / Discover records", "to": "iOS / Link care contexts", "via": "Select facility", "anchor": "btn", "status": "wired" },
+    { "page": "11 iOS ABDM / ABHA", "from": "iOS / Link care contexts", "to": "iOS / Linked records list", "via": "Link selected", "anchor": "btn", "status": "wired" },
+    { "page": "11 iOS ABDM / ABHA", "from": "iOS / Linked records list", "to": "iOS / View linked record", "via": "Open record", "anchor": "t", "status": "wired" },
+    { "page": "11 iOS ABDM / ABHA", "from": "iOS / Consent approve deny", "to": "iOS / My consents", "via": "Approve or deny", "anchor": "btn", "status": "wired" },
+    { "page": "11 iOS ABDM / ABHA", "from": "iOS / ABHA linked", "to": "iOS / Child ABHA", "via": "Child ABHA", "anchor": "t", "status": "wired" },
+    { "page": "12 Web ABDM HIP / HIU", "from": "Web / HIU request records", "to": "Web / HIU pick person", "via": "Before send", "anchor": "send", "status": "wired" },
+    { "page": "12 Web ABDM HIP / HIU", "from": "Web / HIU pick person", "to": "Web / HIU consent pending", "via": "Send consent", "anchor": "board", "status": "wired" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / You hub", "to": "iOS / Profile", "via": "Maternal profile", "anchor": "row", "status": "wired" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / You hub", "to": "iOS / Privacy consent", "via": "Privacy", "anchor": "row", "status": "wired" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / You hub", "to": "iOS / Privacy + ABDM row", "via": "ABDM", "anchor": "row", "status": "wired" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / You hub", "to": "iOS / Logout confirm", "via": "Sign out", "anchor": "row", "status": "wired" },
+    { "page": "05 iOS Child", "from": "iOS / Children list", "to": "iOS / Add child", "via": "Add child", "anchor": "btn", "status": "wired" },
+    { "page": "05 iOS Child", "from": "iOS / Add child", "to": "iOS / Child home", "via": "Create child", "anchor": "btn", "status": "wired" },
+    { "page": "06 iOS Care network", "from": "iOS / Caregivers list", "to": "iOS / Invite caregiver", "via": "Invite caregiver", "anchor": "btn", "status": "wired" },
+    { "page": "06 iOS Care network", "from": "iOS / Invite caregiver", "to": "iOS / Caregiver invite sent", "via": "Send invite", "anchor": "btn", "status": "wired" },
+    { "page": "06 iOS Care network", "from": "iOS / Caregiver invite sent", "to": "iOS / Caregivers list", "via": "Done", "anchor": "btn", "status": "wired" },
+    { "page": "06 iOS Care network", "from": "iOS / Caregiver share", "to": "iOS / Caregivers list", "via": "Manage caregivers", "anchor": "btn", "status": "wired" }
+  ],
+  "skippedCrossPage": [
+    { "from": "iOS / Pregnancy episode", "to": "iOS / Delivery → child", "via": "Delivery", "fromPage": "03 iOS Mother journeys", "toPage": "02 iOS Onboarding + Home", "status": "skipped-cross-page" },
+    { "from": "iOS / Weight", "to": "iOS / Dashboard hero", "via": "Home", "fromPage": "04 iOS Track + mind", "toPage": "02 iOS Onboarding + Home", "status": "skipped-cross-page" },
+    { "from": "Web / Ops dashboard", "to": "Web / Clinician inbox", "via": "Inbox", "fromPage": "08 Web Ops + patients", "toPage": "09 Web Encounter", "status": "skipped-cross-page" },
+    { "from": "iOS / Consent approve deny", "to": "Web / HIU denied expired", "via": "Deny", "fromPage": "11 iOS ABDM / ABHA", "toPage": "12 Web ABDM HIP / HIU", "status": "skipped-cross-page" },
+    { "from": "Web / Enc §14 Treatment", "to": "Web / Prescription", "via": "Open prescription", "fromPage": "09b Encounter sections", "toPage": "09 Web Encounter", "status": "skipped-cross-page" },
+    { "from": "Web / Encounter form", "to": "Web / Enc §01–§18", "via": "TOC rows", "fromPage": "09 Web Encounter", "toPage": "09b Encounter sections", "status": "skipped-cross-page", "note": "18 section hops; open 09b manually or use Walk B encounter clone" },
+    { "from": "iOS / You hub", "to": "iOS / Caregivers list", "via": "Caregivers", "fromPage": "03 iOS Mother journeys", "toPage": "06 iOS Care network", "status": "skipped-cross-page" },
+    { "from": "iOS / You hub", "to": "iOS / Clinic access", "via": "Clinic access", "fromPage": "03 iOS Mother journeys", "toPage": "02 iOS Onboarding + Home", "status": "skipped-cross-page" },
+    { "from": "iOS / You hub", "to": "iOS / ABHA hub", "via": "Health ID / ABHA", "fromPage": "03 iOS Mother journeys", "toPage": "11 iOS ABDM / ABHA", "status": "skipped-cross-page" },
+    { "from": "iOS / Dashboard hero", "to": "iOS / You hub", "via": "Tab You", "fromPage": "02 iOS Onboarding + Home", "toPage": "03 iOS Mother journeys", "status": "skipped-cross-page" },
+    { "from": "iOS / Dashboard hero", "to": "iOS / Children list", "via": "Tab Child", "fromPage": "02 iOS Onboarding + Home", "toPage": "05 iOS Child", "status": "skipped-cross-page" },
+    { "from": "iOS / Caregiver invite sent", "to": "iOS / Caregiver login", "via": "Caregiver opens SMS", "fromPage": "06 iOS Care network", "toPage": "07 iOS Caregiver", "status": "skipped-cross-page" }
+  ]
+}

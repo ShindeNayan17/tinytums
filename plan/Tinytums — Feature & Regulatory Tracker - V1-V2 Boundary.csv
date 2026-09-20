@@ -1,0 +1,11 @@
+Allowed / Expected in V1,Held for V2+ Regulatory Path
+Health record storage and organisation,Automated clinical abnormality flagging
+Mother-entered vitals/measurements,Automated urgency or triage
+"Charts/trends, counts, ranges and dates",Disease diagnosis by software
+Factual visit summaries,Risk stratification intended to drive care
+Teleconsultation facilitated by platform,Deterioration prediction
+Appointments and messages/complaints,Treatment or drug-dose recommendations
+Clinician verification of records,Disease-specific autonomous clinical counselling
+Growth/vaccine/milestone tracking without diagnostic labels,Clinical decision-support algorithms not yet classified/validated
+Institutional dashboard and admission workflow,Connected-device medical monitoring if it changes intended medical purpose
+Role-based care team access and audit trails,Any feature moved across the boundary without regulatory review

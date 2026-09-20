@@ -1,0 +1,544 @@
+Tinytums V1
+Workflow & System Diagram Pack
+Editable Google Slides engineering canvases — one complete workflow per slide
+Mother + Child longitudinal record
+Doctor × Institution workflow
+Care episode / admission
+Consent + RBAC + audit
+V1 regulatory boundary
+Source basis: Tinytums Product Master, Founder Dashboard, and current founder decisions captured in this workspace.
+1
+
+01
+System Context Map
+The complete V1 product context: consumer account, clinical users, institution workflows, data domains, and future regulated module boundary.
+Mother
+consumer account owner
+Family caregiver
+read-only selected view
+Doctor
+Doctor X @ Institution Y
+Care team
+role-specific access
+Institution
+hospital / clinic account
+Tinytums V1
+longitudinal maternal–child care layer
+Identity & Accounts
+Mother Master Profile
+Pregnancy Episode
+Child Profile
+Measurements & Tracking
+Documents / Reports
+Appointments
+Teleconsult / Messaging
+Admission Episodes
+Institution Directory
+Care Teams
+Consent / Permissions
+Audit Trail
+V2+ regulated clinical intelligence
+flags / triage / risk / treatment support
+separate regulatory gate
+V1 rule: store, organise, display, summarise and transmit factual information. Do not diagnose, triage, predict deterioration, assign urgency, or recommend treatment automatically.
+Tinytums V1 — engineering diagram canvas | rounded = workflow action | diamond = decision | cylinder = stored data | dashed = data/access relation
+2
+
+02
+Mother Complete Workflow
+One unified journey: preconception, pregnancy, postpartum, child health, appointments, admissions, caregiver sharing, and clinician connections.
+Mother app journey
+Clinical connection / services
+Longitudinal record outcomes
+Install / open
+TinyTums
+Create account
+identity basics
+Current state?
+Trying to conceive
+preconception
+Active pregnancy
+LMP/EDD/GA
+Existing child
+0–7 years
+Unified mother dashboard
+health + pregnancy + child cards
+Enter / upload
+measurements, symptoms, reports
+Tasks, reminders,
+vaccines, milestones, activities
+Find / invite
+primary OBGY or professionals
+Choose sharing
+sections + consent
+Book visit /
+teleconsult
+Clinician review
+verify / note / prescribe
+Admission needed?
+Admission care episode
+role-based hospital team
+Invite caregiver
+read-only selected view
+Maternal master profile
+persists beyond pregnancy
+Pregnancy episode
+including sensitive outcomes
+Delivery transition
+Postpartum / ongoing
+maternal health
+Child profile(s)
+growth + vaccine + milestones
+Generated factual summary
+links back to source data
+V1 safety boundary
+No auto-diagnosis/triage/treatment
+All alternate states must coexist: pregnant + existing child, multiple children, multiple pregnancy, pregnancy loss, postpartum and future pregnancy planning.
+Tinytums V1 — engineering diagram canvas | rounded = workflow action | diamond = decision | cylinder = stored data | dashed = data/access relation
+3
+
+03
+Family Caregiver Workflow
+Caregiver is not a clinical user; caregiver access is mother-approved, selected, read-only, and revocable.
+Mother controls sharing
+Caregiver device
+Permission engine + audit
+Mother opens
+Caregiver Sharing
+Select caregiver
+phone/email
+Choose sections
+Maternal / pregnancy / child / reports
+Invite sent
+Accepted?
+Caregiver account
+linked to mother
+Read-only selected view
+No health-record edits
+Not accepted / expired
+resend or cancel
+Caregiver login
+Requests record / section
+Permission evaluation
+role=caregiver + scope + active consent
+ALLOW
+show selected data
+DENY
+restricted / revoked / expired
+Mother changes scope
+or revokes access
+Audit event
+invited / viewed / scope changed / revoked
+Attempt edit / enter record
+→ always denied in V1
+Tinytums V1 — engineering diagram canvas | rounded = workflow action | diamond = decision | cylinder = stored data | dashed = data/access relation
+4
+
+04
+Provider Discovery & Appointment Flow
+Two entry routes converge into one relationship: Doctor X at Institution Y. Search-ranking and final slot logic remain TBD.
+Mother discovery
+Directory + verification
+Appointment lifecycle
+Mother needs care
+OBGY / pediatrician / allied
+Search by?
+Search institution
+hospital/clinic
+Search doctor
+name/specialty
+Institution page
+select doctor practising there
+Doctor profile
+choose listed institution/location
+Care relationship created
+Doctor X @ Institution Y
+Subscribing primary OBGY / institution?
+Enhanced access
+through clinical relationship
+Core access only
+selected advanced features may be paid
+Doctor not on Tinytums?
+Invite my doctor
+patient submits basic info
+Tinytums verifies
+registration/profile before publishing
+Choose appointment type
+visit / teleconsult
+Pick slot
+confirm appointment
+Pre-visit packet
+complaint + documents + summary
+Doctor queue
+appointment-time order
+Consultation
+record / prescription / follow-up
+Tinytums V1 — engineering diagram canvas | rounded = workflow action | diamond = decision | cylinder = stored data | dashed = data/access relation
+5
+
+05
+Doctor Workflow
+Clinician works through named account and selected institution context; records must remain attributable to individual users.
+Doctor dashboard
+Clinical encounter
+After encounter
+Doctor login
+individual account
+Choose context
+Institution / practice location
+Dashboard
+Hospital + Doctor identity
+Live worklists
+appointments / admissions / discharges
+Open patient
+from queue/master/admission
+Access check
+relationship + role + consent
+Deny / request access
+Review factual summary
+new entries since last review
+Drill down to
+source data / reports
+Consultation
+history / exam / advice
+Verify fields
+lock clinically important data
+Create note / diagnosis / prescription
+clinician-created data
+Plan
+follow-up / monitoring / admission
+Follow-up appointment
+or teleconsult
+Admission pathway
+if needed
+Longitudinal access
+only if individually connected + shared
+Audit trail
+viewed / verified / prescribed / changed
+Care team handover
+role-scoped tasks
+Tinytums V1 — engineering diagram canvas | rounded = workflow action | diamond = decision | cylinder = stored data | dashed = data/access relation
+6
+
+06
+Institution Workflow
+Institution-first operating model with individual named staff accounts, department/care-team management, and operational dashboards.
+Institution setup
+Operations dashboard
+Governance / restrictions
+Institution owner / admin
+may also be primary doctor
+Create institution profile
+branches / departments / services
+Invite staff
+individual accounts only
+Assign roles
+OBGY / pediatrician / nurse / junior / allied
+Professional verification
+registry/manual workflow
+Go-live
+public profiles + scheduling
+Institution dashboard
+hospital name + clinician context
+Live counts
+today appointments / admitted / discharge planned / discharged
+Queues
+upcoming admissions / appointment order / seen today
+Patient master database
+authorised institutional patients
+Inpatient admission area
+diagnosis + care team + discharge
+Connected / treated patients
+filtered by relationship and episode
+Care-team management
+assign / reassign / remove
+Clinical records
+entered by named users
+Reports / prescriptions
+traceable to source actor
+Discharge / close episode
+reduce temporary access
+No shared passwords
+No generic clinical login
+Institution-scoped access
+not global doctor access
+Audit every material action
+user + role + time + context
+Permission matrix configurable
+within safe clinical bounds
+B2B2C subscriptions
+TBD pricing/value proposition
+Tinytums V1 — engineering diagram canvas | rounded = workflow action | diamond = decision | cylinder = stored data | dashed = data/access relation
+7
+
+07
+Clinical Care-Team Workflow
+Multidisciplinary care inside and outside institutions; each role gets purpose-appropriate access, not a cloned doctor view.
+Team creation
+Role-scoped work
+Ongoing vs temporary relationships
+Care team needed
+outpatient / admission / postpartum / child
+Who initiates?
+Mother connects
+external professional
+Institution assigns
+admission staff
+Select role
+OBGY / pediatrician / nurse / junior / physio / lactation / dietitian
+Apply permission matrix
+role + relationship + context
+Active team member
+visible on patient/team page
+Primary/consultant OBGY
+broad clinical access
+Junior doctor/resident
+broad access + supervision policy
+Nurse
+view required items + enter selected observations/vitals
+Pediatrician
+child profile + shared maternal context
+Allied professionals
+section-specific access only
+Tasks / notes / observations
+entered by named account
+Handover / reassignment
+primary owner retained
+Audit trail
+who accessed / entered / changed
+Ongoing connected professional
+mother-controlled sharing persists
+Admission team member
+temporary institutional access
+At discharge
+remove/reduce temporary access
+Remove from team
+no further role access
+Tinytums V1 — engineering diagram canvas | rounded = workflow action | diamond = decision | cylinder = stored data | dashed = data/access relation
+8
+
+08
+Care Episode / Admission Lifecycle
+Admission creates a time-bounded institutional care episode with temporary role-based access and a structured discharge transition.
+Pre-admission
+Active admission
+Discharge + post-discharge access
+Planned admission
+from appointment / doctor plan
+Patient arrives
+identity + consent/context check
+Admit?
+Create admission care episode
+start time + institution + primary doctor
+Cancelled / outpatient path
+Assign authorised staff
+primary OBGY + junior + nurse + allied
+Grant temporary role access
+without repeated mother approval
+Admission chart
+diagnosis, notes, vitals, reports, orders
+Care delivery
+rounds, observations, documents
+Care-team changes
+add / remove / reassign
+Transfer / escalation
+new context if needed
+Readmission
+new or linked episode
+Discharge planned
+Discharge summary / advice
+clinician-created document
+Close episode
+end time + status
+End/reduce temporary
+admission-team access
+Ongoing access only
+individual clinician + mother sharing
+Audit every sensitive action
+assignment, access, notes, discharge
+Tinytums V1 — engineering diagram canvas | rounded = workflow action | diamond = decision | cylinder = stored data | dashed = data/access relation
+9
+
+09
+Consent, Sharing & Role-Based Access Control
+Central permission engine: evaluate actor, relationship, institution context, role, consent scope, episode state, and requested resource.
+Actor
+Mother / caregiver / doctor / nurse / admin
+Authenticated identity
+individual named account
+Context
+Institution / external / admission
+Care relationship
+Doctor X @ Institution Y / caregiver link
+Consent scope
+sections, duration, revocation state
+Requested resource
+field / document / episode / summary
+Permission decision engine
+minimum-necessary + purpose-appropriate access
+ALLOW
+show / enter / verify
+according to role
+DENY
+not shared / wrong institution / expired / inappropriate role
+LIMIT
+read-only / masked / section-specific / temporary
+Audit event
+who, when, context, resource, action, outcome
+Key V1 rules
+• Mother controls ongoing sharing with caregivers and external/connected professionals
+• Active admission permits authorised institutional staff access via the episode
+• Caregiver is read-only
+• Discharge removes/reduces temporary team access
+• Verified clinical fields cannot be silently overwritten by mother
+TBD for implementation
+Final permission matrix, data-retention rules, detailed consent language, legal/security review.
+Tinytums V1 — engineering diagram canvas | rounded = workflow action | diamond = decision | cylinder = stored data | dashed = data/access relation
+10
+
+10
+Maternal–Child Longitudinal Data Model
+High-level relationship model: mother owns the consumer account; clinical episodes and child profiles remain linked longitudinally.
+User Account
+Mother owner
+Maternal Master Profile
+identity, blood group/Rh, allergies, chronic conditions, obstetric history, medicines, nutrition, mental health, future planning
+Reproductive Journey
+TTC / pregnancy / postpartum / ongoing
+Pregnancy Episode
+LMP, EDD, GA, fetal info, diagnosis, monitoring plan, reports, appointments
+Postpartum / Ongoing Maternal Health
+42 days postnatal, ~12 weeks postpartum layer, then ongoing care
+Child Profile(s)
+0–7 years; one or more children; twins create multiple child profiles
+Measurements
+weight, BP, glucose, vitals
+Documents / Reports
+uploaded, clinician reviewed
+Appointments
+visits + teleconsults
+Clinical Records
+notes, diagnoses, prescriptions, verification
+Vaccination
+records + reminders
+Growth + Milestones
+observed, upcoming, activities
+Relationships
+Doctor X @ Institution Y; caregiver link; external professionals; care-team assignments
+Audit + Provenance
+source, actor, timestamp, verified status, correction history
+Generated Factual Summaries
+never replace source data; always drill-downable
+Tinytums V1 — engineering diagram canvas | rounded = workflow action | diamond = decision | cylinder = stored data | dashed = data/access relation
+11
+
+11
+Data Provenance, Verification & Correction Flow
+Clinically relevant data should preserve source, verified status, version history, and correction requests.
+Data enters system
+Clinical review
+Correction / versioning
+Mother-entered
+self-reported data
+Uploaded document
+report / prescription / image
+Clinician-entered
+notes / diagnosis / prescription
+Future device/API derived
+not V1 default
+Attach provenance metadata
+source type + actor + timestamp + context
+Status: self-reported / unverified
+visible label
+Authorised clinician reviews
+source data + clinical context
+Confirm?
+Clinician-verified
+locked against direct maternal overwrite
+Leave unverified / request clarification
+Mother requests correction
+or adds new information
+Correction queue
+for clinician/admin review
+Create new version
+old value retained in history
+Audit entry
+entered, verified, corrected, viewed
+Factual summary references
+verified + unverified source records
+Examples of lockable fields: blood group/Rh, clinically relevant allergies, gravida/para, confirmed EDD, chronic diagnoses, significant pregnancy complications, important investigation results, doctor-defined monitoring plan.
+Tinytums V1 — engineering diagram canvas | rounded = workflow action | diamond = decision | cylinder = stored data | dashed = data/access relation
+12
+
+12
+Communication, Teleconsultation & Visit Summary Flow
+V1 can facilitate messaging, complaint submission, records, teleconsults, and prescriptions; clinician decides appropriateness and care.
+Mother side
+Tinytums communication layer
+Clinician side
+Mother has question / symptom / follow-up need
+Select channel
+message / visit / teleconsult
+Structured packet
+complaint + vitals + reports + questions
+Consent/access check
+right doctor/institution/context
+Clinician decides
+teleconsult appropriate?
+Teleconsult / call
+doctor-led clinical decision
+Ask for in-person visit
+when examination needed
+Secure message thread
+context-linked
+Records/documents visible
+according to permission
+Encounter completed
+advice/prescription/referral/follow-up
+Store encounter record
+clinician-created and attributable
+Mother notified
+can view/download/share if allowed
+Pre/post-visit factual summary
+new entries, ranges/counts/dates; always drill-downable
+V1 boundary
+No automated diagnosis, urgency, risk score, or treatment recommendation.
+Audit
+message, access, consult, prescription, document events
+Tinytums V1 — engineering diagram canvas | rounded = workflow action | diamond = decision | cylinder = stored data | dashed = data/access relation
+13
+
+13
+V1 Regulatory Boundary & Developer Implementation Sequence
+A safe build order: ship non-device workflows first; keep future clinical intelligence architecturally separable.
+Allowed in V1
+Regulatory gate
+Suggested implementation order
+Collect / organise data
+profiles, measurements, reports
+Display trends, dates, counts, ranges
+without abnormality labels
+Share records by consent
+with doctors/caregivers
+Generate factual summary
+link to source data
+Facilitate teleconsult
+clinician-led care
+NOT V1 commercial activation
+automated abnormality flags, urgency labels, triage, diagnosis, deterioration prediction, clinical risk stratification, treatment recommendations, medicine changes, clinical counselling
+Regulatory gate
+intended-use statement → CDSCO classification → technical validation → clinical validation → QMS → post-market plan
+1. Identity + accounts
+Mother, caregiver, professionals, institution
+2. Core data model
+Maternal, pregnancy, child, documents
+3. Consent + RBAC
+share/revoke + audit events
+4. Appointments + dashboards
+queues, visits, summaries
+5. Admission episode
+care team + discharge access
+6. Teleconsult + pilot metrics
+then V2 intelligence only after gate
+Tinytums V1 — engineering diagram canvas | rounded = workflow action | diamond = decision | cylinder = stored data | dashed = data/access relation
+14
