@@ -3,8 +3,8 @@
   "generated": "2026-09-20",
   "note": "Penpot Play interactions. Same-page edges are wired on master boards. Cross-page edges cannot use navigate-to (Penpot page-scoped). Walk A/B/C are cloned onto dedicated pages so those demos click end-to-end. Clones are copies — edit the original board, then re-clone if the walk must match.",
   "counts": {
-    "samePageWired": 105,
-    "skippedCrossPage": 24,
+    "samePageWired": 113,
+    "skippedCrossPage": 26,
     "walkLinks": 15
   },
   "iosMotherTabs": {
@@ -182,7 +182,16 @@
     { "page": "09 Web Encounter", "from": "Web / Teleconsult in-call", "to": "Web / Prescription", "via": "End call", "anchor": "btn", "status": "pending" },
     { "page": "10 Web Admission + roles", "from": "Web / Admit", "to": "Web / Ward transfer", "via": "Transfer ward", "anchor": "btn", "status": "pending" },
     { "page": "10 Web Admission + roles", "from": "Web / Admit", "to": "Web / Readmission", "via": "Readmit", "anchor": "btn", "status": "pending" },
-    { "page": "10 Web Admission + roles", "from": "Web / Dash Admin", "to": "Web / Institution create", "via": "Create institution", "anchor": "btn", "status": "pending" }
+    { "page": "10 Web Admission + roles", "from": "Web / Dash Admin", "to": "Web / Institution create", "via": "Create institution", "anchor": "btn", "status": "pending" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / Pregnancy episode", "to": "iOS / Pregnancy summary (generated)", "via": "Pregnancy summary", "anchor": "btn", "status": "pending", "badge": "aiAssist" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / Postpartum hub", "to": "iOS / Pregnancy summary (generated)", "via": "Pregnancy summary", "anchor": "btn", "status": "pending", "badge": "aiAssist" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / Preconception", "to": "iOS / Meal suggestions", "via": "Meal ideas", "anchor": "row", "status": "pending", "badge": "future" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / You hub", "to": "iOS / Regulated AI hold", "via": "Clinical AI (held)", "anchor": "row", "status": "pending", "badge": "regulatoryHold" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / Regulated AI hold", "to": "iOS / You hub", "via": "Back", "anchor": "btn", "status": "pending", "badge": "regulatoryHold" },
+    { "page": "04 iOS Track + mind", "from": "iOS / You hub", "to": "iOS / Micronutrient tracking", "via": "Micronutrients", "anchor": "row", "status": "pending", "badge": "future" },
+    { "page": "04 iOS Track + mind", "from": "iOS / Reports library", "to": "iOS / Blood investigations tracker", "via": "Lab tracker", "anchor": "btn", "status": "pending", "badge": "amber" },
+    { "page": "08 Web Ops + patients", "from": "Web / Ops dashboard", "to": "Web / Regulated AI hold", "via": "Clinical AI (held)", "anchor": "menu", "status": "pending", "badge": "regulatoryHold" },
+    { "page": "08 Web Ops + patients", "from": "Web / Regulated AI hold", "to": "Web / Ops dashboard", "via": "Back", "anchor": "btn", "status": "pending", "badge": "regulatoryHold" }
   ],
   "skippedCrossPage": [
     { "from": "iOS / Pregnancy episode", "to": "iOS / Delivery → child", "via": "Delivery", "fromPage": "03 iOS Mother journeys", "toPage": "02 iOS Onboarding + Home", "status": "skipped-cross-page" },

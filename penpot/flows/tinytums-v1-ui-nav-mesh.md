@@ -8,7 +8,7 @@ Legend: edge = tap/action. `[xd]` = iOS ↔ web. `?` = showIf. `skip` = skipIf.
 
 ## New screens (Sep 2026)
 
-14 screens added:
+20 screens added (14 + 6 extended scope):
 - `webInstCreate` — Web / Institution create (p10)
 - `webStaffAccept` — Web / Staff invite accept (p08)
 - `iosEntitlement` — iOS / Subscription entitlement (p02)
@@ -23,6 +23,14 @@ Legend: edge = tap/action. `[xd]` = iOS ↔ web. `?` = showIf. `skip` = skipIf.
 - `webWardTransfer` — Web / Ward transfer (p10)
 - `webReadmission` — Web / Readmission (p10)
 - `iosObgyPrompt` — iOS / Primary OBGY prompt (p02)
+
+### Extended scope (badges: future/aiAssist/regulatoryHold/amber)
+- `iosPregSummaryGen` — iOS / Pregnancy summary (generated) (p03) — F-037 — aiAssist
+- `iosMealSuggest` — iOS / Meal suggestions (p03) — F-038 — future
+- `iosMicroTrack` — iOS / Micronutrient tracking (p04) — F-039 — future
+- `iosAiHold` — iOS / Regulated AI hold (p03) — F-045 — regulatoryHold
+- `webAiHold` — Web / Regulated AI hold (p08) — F-045 — regulatoryHold
+- `iosBloodLabs` — iOS / Blood investigations tracker (p04) — F-047 — amber
 
 ## Gap finder
 
@@ -61,6 +69,10 @@ Legend: edge = tap/action. `[xd]` = iOS ↔ web. `?` = showIf. `skip` = skipIf.
 - `webInstCreate` — Web / Institution create
 - `webWardTransfer` — Web / Ward transfer
 - `webReadmission` — Web / Readmission
+- `iosPregSummaryGen` — iOS / Pregnancy summary (generated)
+- `iosMealSuggest` — iOS / Meal suggestions
+- `iosMicroTrack` — iOS / Micronutrient tracking
+- `iosBloodLabs` — iOS / Blood investigations tracker
 - `iosPlay` — iOS / Activities
 - `iosAfter` — iOS / After visit
 - `iosCgInviteExpired` — iOS / Caregiver invite expired

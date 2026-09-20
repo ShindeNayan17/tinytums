@@ -38,10 +38,13 @@ flowchart TB
     iosLogout["Logout confirm"]
     iosTtc["Preconception"]
     iosPreg["Pregnancy episode"]
+    iosPregSummaryGen["Pregnancy summary (generated)"]
     iosPphub["Postpartum hub"]
     iosBreastfeed["Breastfeeding log"]
     iosFamilyPlan["Family planning"]
+    iosMealSuggest["Meal suggestions"]
     iosPeriod["Period tracking"]
+    iosAiHold["Regulated AI hold"]
   end
   subgraph iOS_track [iOS track]
     iosWeight["Weight"]
@@ -57,6 +60,8 @@ flowchart TB
     iosReportView["Report view"]
     iosLogWeightSheet["Log weight sheet"]
     iosLogGlucoseSheet["Log glucose sheet"]
+    iosMicroTrack["Micronutrient tracking"]
+    iosBloodLabs["Blood investigations tracker"]
   end
   subgraph iOS_child [iOS child]
     iosKids["Children list"]
@@ -135,6 +140,7 @@ flowchart TB
     webChart["Patient chart"]
     webMonitoringPlan["Monitoring plan"]
     webAlliedWs["Allied workspace"]
+    webAiHold["Regulated AI hold"]
   end
   subgraph Web_enc [Web enc]
     webSum["Factual summary"]
@@ -435,3 +441,17 @@ flowchart TB
   iosObgyPrompt -->|"Find doctor"| iosSearchH
   iosObgyPrompt -->|"Invite mine"| iosInvite
   iosObgyPrompt -->|"Dismiss"| iosDashHero
+
+  %% Extended scope edges (F-037, F-038, F-039, F-045, F-047)
+  iosPreg -->|"Pregnancy summary"| iosPregSummaryGen
+  iosPphub -->|"Pregnancy summary"| iosPregSummaryGen
+  iosPregSummaryGen -->|"View source"| iosReportView
+  iosTtc -->|"Meal ideas"| iosMealSuggest
+  iosPphub -->|"Meal ideas"| iosMealSuggest
+  iosYou -->|"Micronutrients"| iosMicroTrack
+  iosReports -->|"Lab tracker"| iosBloodLabs
+  iosBloodLabs -->|"Open result"| iosReportView
+  iosYou -->|"Clinical AI (held)"| iosAiHold
+  iosAiHold -->|"Back"| iosYou
+  webOps -->|"Clinical AI (held)"| webAiHold
+  webAiHold -->|"Back"| webOps
