@@ -1,10 +1,10 @@
 {
   "product": "TinyTums V1",
-  "generated": "2026-09-18",
+  "generated": "2026-09-20",
   "note": "Penpot Play interactions. Same-page edges are wired on master boards. Cross-page edges cannot use navigate-to (Penpot page-scoped). Walk A/B/C are cloned onto dedicated pages so those demos click end-to-end. Clones are copies — edit the original board, then re-clone if the walk must match.",
   "counts": {
-    "samePageWired": 89,
-    "skippedCrossPage": 23,
+    "samePageWired": 105,
+    "skippedCrossPage": 24,
     "walkLinks": 15
   },
   "iosMotherTabs": {
@@ -16,8 +16,8 @@
     "note": "Tab targets live on different Penpot pages. Defined in ui-map.json iosMotherTabs."
   },
   "whoAddsWhat": {
-    "caregiver": "Mother only. You hub → Caregivers list → Invite caregiver → SMS. Invitee uses page 07 login.",
-    "child": "Mother only. Child tab → Children list → Add child. Or Delivery → child."
+    "caregiver": "Mother only. You hub → Caregivers list → Invite caregiver → SMS. Invitee uses page 07 login. Caregiver share → Edit sections → Caregiver sections (granular picker) → Save.",
+    "child": "Mother only. Child tab → Children list → Add child. Or Delivery → child. Or Twin delivery → children."
   },
   "play": {
     "walkA": { "page": "13 Walk A mother", "flow": "Walk A · Mother home to pre-visit", "startBoard": "iOS / Dashboard hero · Walk A" },
@@ -167,7 +167,22 @@
     { "page": "06 iOS Care network", "from": "iOS / Caregivers list", "to": "iOS / Invite caregiver", "via": "Invite caregiver", "anchor": "btn", "status": "wired" },
     { "page": "06 iOS Care network", "from": "iOS / Invite caregiver", "to": "iOS / Caregiver invite sent", "via": "Send invite", "anchor": "btn", "status": "wired" },
     { "page": "06 iOS Care network", "from": "iOS / Caregiver invite sent", "to": "iOS / Caregivers list", "via": "Done", "anchor": "btn", "status": "wired" },
-    { "page": "06 iOS Care network", "from": "iOS / Caregiver share", "to": "iOS / Caregivers list", "via": "Manage caregivers", "anchor": "btn", "status": "wired" }
+    { "page": "06 iOS Care network", "from": "iOS / Caregiver share", "to": "iOS / Caregivers list", "via": "Manage caregivers", "anchor": "btn", "status": "wired" },
+    { "page": "06 iOS Care network", "from": "iOS / Caregiver share", "to": "iOS / Caregiver sections", "via": "Edit sections", "anchor": "btn", "status": "pending" },
+    { "page": "06 iOS Care network", "from": "iOS / Caregiver sections", "to": "iOS / Caregiver share", "via": "Save", "anchor": "btn", "status": "pending" },
+    { "page": "06 iOS Care network", "from": "iOS / Teleconsult", "to": "iOS / Teleconsult in-call", "via": "Join call", "anchor": "btn", "status": "pending" },
+    { "page": "06 iOS Care network", "from": "iOS / Teleconsult in-call", "to": "iOS / After visit", "via": "End call", "anchor": "btn", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Dashboard hero", "to": "iOS / Primary OBGY prompt", "via": "Soft prompt", "anchor": "btn", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Pregnancy loss state", "to": "iOS / Sensitive outcome", "via": "More options", "anchor": "btn", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Delivery → child", "to": "iOS / Twin delivery → children", "via": "Multiple birth", "anchor": "btn", "status": "pending" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / Postpartum hub", "to": "iOS / Breastfeeding log", "via": "Breastfeeding", "anchor": "row", "status": "pending" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / Postpartum hub", "to": "iOS / Family planning", "via": "Family planning", "anchor": "row", "status": "pending" },
+    { "page": "05 iOS Child", "from": "iOS / Milestones", "to": "iOS / Corrected age", "via": "Corrected age", "anchor": "btn", "status": "pending" },
+    { "page": "09 Web Encounter", "from": "Web / Teleconsult join", "to": "Web / Teleconsult in-call", "via": "Start call", "anchor": "btn", "status": "pending" },
+    { "page": "09 Web Encounter", "from": "Web / Teleconsult in-call", "to": "Web / Prescription", "via": "End call", "anchor": "btn", "status": "pending" },
+    { "page": "10 Web Admission + roles", "from": "Web / Admit", "to": "Web / Ward transfer", "via": "Transfer ward", "anchor": "btn", "status": "pending" },
+    { "page": "10 Web Admission + roles", "from": "Web / Admit", "to": "Web / Readmission", "via": "Readmit", "anchor": "btn", "status": "pending" },
+    { "page": "10 Web Admission + roles", "from": "Web / Dash Admin", "to": "Web / Institution create", "via": "Create institution", "anchor": "btn", "status": "pending" }
   ],
   "skippedCrossPage": [
     { "from": "iOS / Pregnancy episode", "to": "iOS / Delivery → child", "via": "Delivery", "fromPage": "03 iOS Mother journeys", "toPage": "02 iOS Onboarding + Home", "status": "skipped-cross-page" },

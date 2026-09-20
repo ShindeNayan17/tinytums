@@ -16,11 +16,15 @@ flowchart TB
     iosDashTtc["Dashboard TTC"]
     iosDashPp["Dashboard postpartum"]
     iosNoObgy["No primary OBGY"]
+    iosObgyPrompt["Primary OBGY prompt"]
     iosAccess["Clinic access"]
     iosAccessDenied["Access denied"]
+    iosEntitlement["Subscription entitlement"]
     iosEmptyHome["Empty home"]
     iosPregnancyLoss["Pregnancy loss state"]
+    iosSensitiveOutcome["Sensitive outcome"]
     iosDeliveryChild["Delivery → child"]
+    iosTwinDelivery["Twin delivery → children"]
     iosTasks["Tasks due"]
     iosNotifications["Notifications"]
   end
@@ -35,6 +39,8 @@ flowchart TB
     iosTtc["Preconception"]
     iosPreg["Pregnancy episode"]
     iosPphub["Postpartum hub"]
+    iosBreastfeed["Breastfeeding log"]
+    iosFamilyPlan["Family planning"]
     iosPeriod["Period tracking"]
   end
   subgraph iOS_track [iOS track]
@@ -59,6 +65,7 @@ flowchart TB
     iosGrowth["Growth"]
     iosVax["Vaccines"]
     iosMiles["Milestones"]
+    iosCorrectedAge["Corrected age"]
     iosPlay["Activities"]
   end
   subgraph iOS_care [iOS care]
@@ -72,8 +79,10 @@ flowchart TB
     iosPacket["Pre-visit packet"]
     iosMsg["Messages"]
     iosTele["Teleconsult"]
+    iosTeleInCall["Teleconsult in-call"]
     iosAfter["After visit"]
     iosCgShare["Caregiver share"]
+    iosCgSections["Caregiver sections"]
     iosCgList["Caregivers list"]
     iosCgInvite["Invite caregiver"]
     iosCgInviteSent["Caregiver invite sent"]
@@ -113,6 +122,7 @@ flowchart TB
   subgraph Web_auth [Web auth]
     webLogin["Login"]
     webStaffOtp["Staff OTP"]
+    webStaffAccept["Staff invite accept"]
     webWorkspacePicker["Workspace picker"]
     webWorkspaceSkip["Workspace skip"]
     webStaffPending["Staff pending"]
@@ -151,6 +161,7 @@ flowchart TB
     webRx["Prescription"]
     webClinicianInbox["Clinician inbox"]
     webTeleJoin["Teleconsult join"]
+    webTeleInCall["Teleconsult in-call"]
     webViewSource["View source"]
     webCorrectionQueue["Correction queue"]
     webFollowUp["Follow-up book"]
@@ -163,10 +174,13 @@ flowchart TB
     webNurse["Nurse role"]
     webJunior["Junior doctor"]
     webAdmin["Admin staff"]
+    webInstCreate["Institution create"]
     webInviteStaff["Invite staff"]
     webVerifyQueue["Verify staff queue"]
     webDischargeSummary["Discharge summary"]
     webPlannedAdmit["Planned admission"]
+    webWardTransfer["Ward transfer"]
+    webReadmission["Readmission"]
     webAuditLog["Audit log"]
   end
   subgraph Web_rbac [Web rbac]
@@ -393,3 +407,31 @@ flowchart TB
   webChart -->|"Care contexts"| webCareContexts
   webChart -->|"Request outside records"| webHiuRequest
   iosInvite -->|"Lead sent (legacy edge)"| iosDashHero
+
+  %% New Sep 2026 edges
+  webDashAdmin -->|"Create institution"| webInstCreate
+  webInviteStaff -->|"Invitee opens link [xd]"| webStaffAccept
+  webStaffAccept -->|"Accept"| webStaffOtp
+  iosAccess -->|"View plans"| iosEntitlement
+  iosAccessDenied -->|"View plans"| iosEntitlement
+  iosYou -->|"Clinic access detail"| iosEntitlement
+  iosTele -->|"Join call"| iosTeleInCall
+  webTeleJoin -->|"Start call"| webTeleInCall
+  iosTeleInCall -->|"End call"| iosAfter
+  webTeleInCall -->|"End call"| webRx
+  iosCgShare -->|"Edit sections"| iosCgSections
+  iosCgSections -->|"Save"| iosCgShare
+  iosDeliveryChild -->|"Multiple birth"| iosTwinDelivery
+  iosTwinDelivery -->|"Create profiles"| iosKids
+  iosMiles -->|"Corrected age"| iosCorrectedAge
+  iosPphub -->|"Breastfeeding"| iosBreastfeed
+  iosPphub -->|"Family planning"| iosFamilyPlan
+  iosPregnancyLoss -->|"More options"| iosSensitiveOutcome
+  iosState -->|"Sensitive outcome"| iosSensitiveOutcome
+  webAdmit -->|"Transfer ward"| webWardTransfer
+  webAdmissionChart -->|"Transfer ward"| webWardTransfer
+  webAdmit -->|"Readmit"| webReadmission
+  iosDashHero -->|"Soft prompt ?"| iosObgyPrompt
+  iosObgyPrompt -->|"Find doctor"| iosSearchH
+  iosObgyPrompt -->|"Invite mine"| iosInvite
+  iosObgyPrompt -->|"Dismiss"| iosDashHero

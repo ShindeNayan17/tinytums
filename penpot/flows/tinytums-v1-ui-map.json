@@ -44,8 +44,9 @@
     "caregiver": {
       "who": "Mother only",
       "entry": "You hub → Caregivers, or Child home share, or Caregiver share → Manage",
-      "screens": ["iosYou", "iosCgList", "iosCgInvite", "iosCgInviteSent", "iosCgShare"],
-      "then": "Invitee opens SMS/link → cgLogin (page 07). Not a mother/caregiver picker."
+      "screens": ["iosYou", "iosCgList", "iosCgInvite", "iosCgInviteSent", "iosCgShare", "iosCgSections"],
+      "then": "Invitee opens SMS/link → cgLogin (page 07). Not a mother/caregiver picker.",
+      "sectionPicker": "iosCgShare → Edit sections → iosCgSections (granular section picker) → Save"
     },
     "child": {
       "who": "Mother only",
@@ -297,7 +298,22 @@
     { "id": "webHiuPending", "page": "p12", "board": "Web / HIU consent pending", "actor": "doctor", "features": ["F-046"] },
     { "id": "webHiuGranted", "page": "p12", "board": "Web / HIU consent granted", "actor": "doctor", "features": ["F-046"] },
     { "id": "webHiuDenied", "page": "p12", "board": "Web / HIU denied expired", "actor": "doctor", "features": ["F-046"] },
-    { "id": "webHiuPickPerson", "page": "p12", "board": "Web / HIU pick person", "actor": "doctor", "features": ["F-046"] }
+    { "id": "webHiuPickPerson", "page": "p12", "board": "Web / HIU pick person", "actor": "doctor", "features": ["F-046"] },
+
+    { "id": "webInstCreate", "page": "p10", "board": "Web / Institution create", "actor": "admin", "features": ["F-018"], "note": "institution owner onboarding" },
+    { "id": "webStaffAccept", "page": "p08", "board": "Web / Staff invite accept", "actor": "doctor", "features": ["F-018"], "note": "invitee first join" },
+    { "id": "iosEntitlement", "page": "p02", "board": "iOS / Subscription entitlement", "actor": "mother", "features": ["F-036"] },
+    { "id": "iosTeleInCall", "page": "p06", "board": "iOS / Teleconsult in-call", "actor": "mother", "features": ["F-023"] },
+    { "id": "webTeleInCall", "page": "p09", "board": "Web / Teleconsult in-call", "actor": "doctor", "features": ["F-023"] },
+    { "id": "iosCgSections", "page": "p06", "board": "iOS / Caregiver sections", "actor": "mother", "features": ["F-029"], "note": "granular section picker" },
+    { "id": "iosTwinDelivery", "page": "p02", "board": "iOS / Twin delivery → children", "actor": "mother", "features": ["F-006"] },
+    { "id": "iosCorrectedAge", "page": "p05", "board": "iOS / Corrected age", "actor": "mother", "features": ["F-033"] },
+    { "id": "iosBreastfeed", "page": "p03", "board": "iOS / Breastfeeding log", "actor": "mother", "features": ["F-005"] },
+    { "id": "iosFamilyPlan", "page": "p03", "board": "iOS / Family planning", "actor": "mother", "features": ["F-005"] },
+    { "id": "iosSensitiveOutcome", "page": "p02", "board": "iOS / Sensitive outcome", "actor": "mother", "features": ["F-001"] },
+    { "id": "webWardTransfer", "page": "p10", "board": "Web / Ward transfer", "actor": "doctor", "features": ["F-024"] },
+    { "id": "webReadmission", "page": "p10", "board": "Web / Readmission", "actor": "doctor", "features": ["F-024"] },
+    { "id": "iosObgyPrompt", "page": "p02", "board": "iOS / Primary OBGY prompt", "actor": "mother", "features": ["F-015"], "showIf": "noPrimaryObgy", "note": "soft prompt distinct from iosNoObgy" }
   ],
   "edges": [
     { "from": "iosSplash", "to": "iosAccount", "via": "Get started" },
@@ -513,7 +529,34 @@
     { "from": "webChart", "to": "webCareContexts", "via": "Care contexts" },
     { "from": "webChart", "to": "webHiuRequest", "via": "Request outside records" },
 
-    { "from": "iosInvite", "to": "iosDashHero", "via": "Lead sent (legacy edge)" }
+    { "from": "iosInvite", "to": "iosDashHero", "via": "Lead sent (legacy edge)" },
+
+    { "from": "webDashAdmin", "to": "webInstCreate", "via": "Create institution" },
+    { "from": "webInviteStaff", "to": "webStaffAccept", "via": "Invitee opens link", "note": "cross-device" },
+    { "from": "webStaffAccept", "to": "webStaffOtp", "via": "Accept" },
+    { "from": "iosAccess", "to": "iosEntitlement", "via": "View plans" },
+    { "from": "iosAccessDenied", "to": "iosEntitlement", "via": "View plans" },
+    { "from": "iosYou", "to": "iosEntitlement", "via": "Clinic access detail" },
+    { "from": "iosTele", "to": "iosTeleInCall", "via": "Join call" },
+    { "from": "webTeleJoin", "to": "webTeleInCall", "via": "Start call" },
+    { "from": "iosTeleInCall", "to": "iosAfter", "via": "End call" },
+    { "from": "webTeleInCall", "to": "webRx", "via": "End call" },
+    { "from": "iosCgShare", "to": "iosCgSections", "via": "Edit sections" },
+    { "from": "iosCgSections", "to": "iosCgShare", "via": "Save" },
+    { "from": "iosDeliveryChild", "to": "iosTwinDelivery", "via": "Multiple birth" },
+    { "from": "iosTwinDelivery", "to": "iosKids", "via": "Create profiles" },
+    { "from": "iosMiles", "to": "iosCorrectedAge", "via": "Corrected age" },
+    { "from": "iosPphub", "to": "iosBreastfeed", "via": "Breastfeeding" },
+    { "from": "iosPphub", "to": "iosFamilyPlan", "via": "Family planning" },
+    { "from": "iosPregnancyLoss", "to": "iosSensitiveOutcome", "via": "More options" },
+    { "from": "iosState", "to": "iosSensitiveOutcome", "via": "Sensitive outcome" },
+    { "from": "webAdmit", "to": "webWardTransfer", "via": "Transfer ward" },
+    { "from": "webAdmissionChart", "to": "webWardTransfer", "via": "Transfer ward" },
+    { "from": "webAdmit", "to": "webReadmission", "via": "Readmit" },
+    { "from": "iosDashHero", "to": "iosObgyPrompt", "via": "Soft prompt", "showIf": "noPrimaryObgy" },
+    { "from": "iosObgyPrompt", "to": "iosSearchH", "via": "Find doctor" },
+    { "from": "iosObgyPrompt", "to": "iosInvite", "via": "Invite mine" },
+    { "from": "iosObgyPrompt", "to": "iosDashHero", "via": "Dismiss" }
   ],
   "prototypeWalks": [
     {

@@ -6,6 +6,24 @@ If preview is slow, paste [`tinytums-v1-ui-nav-mesh.mmd`](tinytums-v1-ui-nav-mes
 
 Legend: edge = tap/action. `[xd]` = iOS ↔ web. `?` = showIf. `skip` = skipIf.
 
+## New screens (Sep 2026)
+
+14 screens added:
+- `webInstCreate` — Web / Institution create (p10)
+- `webStaffAccept` — Web / Staff invite accept (p08)
+- `iosEntitlement` — iOS / Subscription entitlement (p02)
+- `iosTeleInCall` — iOS / Teleconsult in-call (p06)
+- `webTeleInCall` — Web / Teleconsult in-call (p09)
+- `iosCgSections` — iOS / Caregiver sections (p06)
+- `iosTwinDelivery` — iOS / Twin delivery → children (p02)
+- `iosCorrectedAge` — iOS / Corrected age (p05)
+- `iosBreastfeed` — iOS / Breastfeeding log (p03)
+- `iosFamilyPlan` — iOS / Family planning (p03)
+- `iosSensitiveOutcome` — iOS / Sensitive outcome (p02)
+- `webWardTransfer` — Web / Ward transfer (p10)
+- `webReadmission` — Web / Readmission (p10)
+- `iosObgyPrompt` — iOS / Primary OBGY prompt (p02)
+
 ## Gap finder
 
 ### No inbound (hard to reach unless tab/deep link)
@@ -18,10 +36,10 @@ Legend: edge = tap/action. `[xd]` = iOS ↔ web. `?` = showIf. `skip` = skipIf.
 - `webRbacMatrix` — Web / RBAC matrix
 - `abhaPrivacySplit` — iOS / ABDM vs privacy
 - `webHpr` — Web / Staff HPR
+- `webInstCreate` — Web / Institution create (via webDashAdmin)
 
 ### No outbound (dead ends — OK if terminal)
-- `iosAccess` — iOS / Clinic access
-- `iosPregnancyLoss` — iOS / Pregnancy loss state
+- `iosPregnancyLoss` — iOS / Pregnancy loss state (now has edge to iosSensitiveOutcome)
 - `iosTasks` — iOS / Tasks due
 - `iosNotifications` — iOS / Notifications
 - `iosPrivacy` — iOS / Privacy consent
@@ -36,7 +54,13 @@ Legend: edge = tap/action. `[xd]` = iOS ↔ web. `?` = showIf. `skip` = skipIf.
 - `iosLogGlucoseSheet` — iOS / Log glucose sheet
 - `iosGrowth` — iOS / Growth
 - `iosVax` — iOS / Vaccines
-- `iosMiles` — iOS / Milestones
+- `iosCorrectedAge` — iOS / Corrected age
+- `iosBreastfeed` — iOS / Breastfeeding log
+- `iosFamilyPlan` — iOS / Family planning
+- `iosSensitiveOutcome` — iOS / Sensitive outcome
+- `webInstCreate` — Web / Institution create
+- `webWardTransfer` — Web / Ward transfer
+- `webReadmission` — Web / Readmission
 - `iosPlay` — iOS / Activities
 - `iosAfter` — iOS / After visit
 - `iosCgInviteExpired` — iOS / Caregiver invite expired
