@@ -280,7 +280,80 @@ flowchart TD
   webEnc[Encounter] --> webHipShare[HIP share status]
 ```
 
-## 14. V1 fence
+## 14. New flows (Sep 2026)
+
+### Institution + staff onboarding
+```mermaid
+flowchart TD
+  webDashAdmin[Dash Admin] --> webInstCreate[Institution create]
+  webInviteStaff[Invite staff] -->|cross-device| webStaffAccept[Staff invite accept]
+  webStaffAccept --> webStaffOtp[Staff OTP]
+```
+
+### Subscription entitlement
+```mermaid
+flowchart TD
+  iosAccess[Clinic access] --> iosEntitlement[Subscription entitlement]
+  iosAccessDenied[Access denied] --> iosEntitlement
+  iosYou[You hub] --> iosEntitlement
+```
+
+### Teleconsult in-call
+```mermaid
+flowchart TD
+  iosTele[Teleconsult] --> iosTeleInCall[Teleconsult in-call]
+  iosTeleInCall --> iosAfter[After visit]
+  webTeleJoin[Teleconsult join] --> webTeleInCall[Web Teleconsult in-call]
+  webTeleInCall --> webRx[Prescription]
+```
+
+### Caregiver granular sections
+```mermaid
+flowchart TD
+  iosCgShare[Caregiver share] --> iosCgSections[Caregiver sections picker]
+  iosCgSections --> iosCgShare
+```
+
+### Twin delivery + corrected age
+```mermaid
+flowchart TD
+  iosDeliveryChild[Delivery → child] --> iosTwinDelivery[Twin delivery → children]
+  iosTwinDelivery --> iosKids[Children list]
+  iosMiles[Milestones] --> iosCorrectedAge[Corrected age]
+```
+
+### Postpartum breastfeeding + family planning
+```mermaid
+flowchart TD
+  iosPphub[Postpartum hub] --> iosBreastfeed[Breastfeeding log]
+  iosPphub --> iosFamilyPlan[Family planning]
+```
+
+### Sensitive outcome
+```mermaid
+flowchart TD
+  iosPregnancyLoss[Pregnancy loss state] --> iosSensitiveOutcome[Sensitive outcome]
+  iosState[State picker] --> iosSensitiveOutcome
+```
+
+### Ward transfer + readmission
+```mermaid
+flowchart TD
+  webAdmit[Admit] --> webWardTransfer[Ward transfer]
+  webAdmissionChart[Admission chart] --> webWardTransfer
+  webAdmit --> webReadmission[Readmission]
+```
+
+### Primary OBGY soft prompt
+```mermaid
+flowchart TD
+  iosDashHero[Dashboard hero] -->|"showIf noPrimaryObgy"| iosObgyPrompt[Primary OBGY prompt]
+  iosObgyPrompt --> iosSearchH[Search hospital]
+  iosObgyPrompt --> iosInvite[Invite doctor]
+  iosObgyPrompt --> iosDashHero
+```
+
+## 15. V1 fence
 
 ```mermaid
 flowchart LR
