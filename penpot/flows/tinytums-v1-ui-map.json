@@ -2,8 +2,18 @@
   "product": "TinyTums V1 + ABDM UI",
   "file": "Penpot · TinyTums V1",
   "scope": {
-    "in": "F-001 to F-036 plus F-046 ABDM/ABHA customer screens",
-    "out": ["F-037", "F-038", "F-039", "F-040", "F-041", "F-042", "F-043", "F-044", "F-045", "F-047"]
+    "in": "F-001 to F-039 plus F-045, F-046, F-047",
+    "out": ["F-040", "F-041", "F-042", "F-043", "F-044"],
+    "extended": {
+      "note": "Previously out-of-scope screens now added with badges",
+      "features": ["F-037", "F-038", "F-039", "F-045", "F-047"],
+      "badges": {
+        "future": "Feature designed but not yet in production build",
+        "aiAssist": "Educational AI-generated content; no diagnosis",
+        "regulatoryHold": "Placeholder for regulated clinical AI; gated until approval",
+        "amber": "Partial implementation; values only, no flags"
+      }
+    }
   },
   "frames": {
     "ios": { "width": 390, "height": 844 },
@@ -313,7 +323,14 @@
     { "id": "iosSensitiveOutcome", "page": "p02", "board": "iOS / Sensitive outcome", "actor": "mother", "features": ["F-001"] },
     { "id": "webWardTransfer", "page": "p10", "board": "Web / Ward transfer", "actor": "doctor", "features": ["F-024"] },
     { "id": "webReadmission", "page": "p10", "board": "Web / Readmission", "actor": "doctor", "features": ["F-024"] },
-    { "id": "iosObgyPrompt", "page": "p02", "board": "iOS / Primary OBGY prompt", "actor": "mother", "features": ["F-015"], "showIf": "noPrimaryObgy", "note": "soft prompt distinct from iosNoObgy" }
+    { "id": "iosObgyPrompt", "page": "p02", "board": "iOS / Primary OBGY prompt", "actor": "mother", "features": ["F-015"], "showIf": "noPrimaryObgy", "note": "soft prompt distinct from iosNoObgy" },
+
+    { "id": "iosPregSummaryGen", "page": "p03", "board": "iOS / Pregnancy summary (generated)", "actor": "mother", "features": ["F-037"], "badge": "aiAssist", "note": "factual generated summary; View source; no diagnosis" },
+    { "id": "iosMealSuggest", "page": "p03", "board": "iOS / Meal suggestions", "actor": "mother", "features": ["F-038"], "badge": "future", "note": "educational only; AI assist badge" },
+    { "id": "iosMicroTrack", "page": "p04", "board": "iOS / Micronutrient tracking", "actor": "mother", "features": ["F-039"], "badge": "future", "note": "values/dates only" },
+    { "id": "iosAiHold", "page": "p03", "board": "iOS / Regulated AI hold", "actor": "mother", "features": ["F-045"], "badge": "regulatoryHold", "note": "gate only, not working CDS" },
+    { "id": "webAiHold", "page": "p08", "board": "Web / Regulated AI hold", "actor": "doctor", "features": ["F-045"], "badge": "regulatoryHold", "note": "gate only, not working CDS" },
+    { "id": "iosBloodLabs", "page": "p04", "board": "iOS / Blood investigations tracker", "actor": "mother", "features": ["F-047"], "badge": "amber", "note": "values only; no abnormality flags" }
   ],
   "edges": [
     { "from": "iosSplash", "to": "iosAccount", "via": "Get started" },
@@ -556,7 +573,20 @@
     { "from": "iosDashHero", "to": "iosObgyPrompt", "via": "Soft prompt", "showIf": "noPrimaryObgy" },
     { "from": "iosObgyPrompt", "to": "iosSearchH", "via": "Find doctor" },
     { "from": "iosObgyPrompt", "to": "iosInvite", "via": "Invite mine" },
-    { "from": "iosObgyPrompt", "to": "iosDashHero", "via": "Dismiss" }
+    { "from": "iosObgyPrompt", "to": "iosDashHero", "via": "Dismiss" },
+
+    { "from": "iosPreg", "to": "iosPregSummaryGen", "via": "Pregnancy summary" },
+    { "from": "iosPphub", "to": "iosPregSummaryGen", "via": "Pregnancy summary" },
+    { "from": "iosPregSummaryGen", "to": "iosReportView", "via": "View source" },
+    { "from": "iosTtc", "to": "iosMealSuggest", "via": "Meal ideas" },
+    { "from": "iosPphub", "to": "iosMealSuggest", "via": "Meal ideas" },
+    { "from": "iosYou", "to": "iosMicroTrack", "via": "Micronutrients" },
+    { "from": "iosReports", "to": "iosBloodLabs", "via": "Lab tracker" },
+    { "from": "iosBloodLabs", "to": "iosReportView", "via": "Open result" },
+    { "from": "iosYou", "to": "iosAiHold", "via": "Clinical AI (held)" },
+    { "from": "iosAiHold", "to": "iosYou", "via": "Back" },
+    { "from": "webOps", "to": "webAiHold", "via": "Clinical AI (held)" },
+    { "from": "webAiHold", "to": "webOps", "via": "Back" }
   ],
   "prototypeWalks": [
     {

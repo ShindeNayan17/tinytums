@@ -2,18 +2,19 @@ flowchart TB
   subgraph index [TinyTums V1 screen map]
     iosAuth[iOS auth]
     iosHome[iOS home + entitlement]
-    iosYou[iOS you profile]
-    iosTrack[iOS track mind]
+    iosYou[iOS you profile + AI hold]
+    iosTrack[iOS track mind + labs]
     iosChild[iOS child + corrected age]
     iosCare[iOS care visit + teleconsult]
     iosCg[iOS caregiver + sections]
     iosAbha[iOS ABHA]
     webAuth[Web login + staff accept]
-    webOps[Web ops chart]
+    webOps[Web ops chart + AI hold]
     webEnc[Web encounter + teleconsult]
     webAdmit[Web admission + transfer]
     webRbac[Web RBAC dashboards]
     webAbdm[Web HIP HIU]
+    iosExtended[iOS extended: summary meals micro labs]
   end
   iosAuth --> iosHome
   iosHome --> iosYou
@@ -32,3 +33,5 @@ flowchart TB
   webOps --> webAbdm
   iosAbha --> webAbdm
   webAbdm --> iosAbha
+  iosYou --> iosExtended
+  iosTrack --> iosExtended

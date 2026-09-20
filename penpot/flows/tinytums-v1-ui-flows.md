@@ -353,7 +353,48 @@ flowchart TD
   iosObgyPrompt --> iosDashHero
 ```
 
-## 15. V1 fence
+## 15. Extended scope (F-037, F-038, F-039, F-045, F-047)
+
+Badges: `future` | `aiAssist` | `regulatoryHold` | `amber`
+
+### Pregnancy summary (generated) — F-037
+```mermaid
+flowchart TD
+  iosPreg[Pregnancy episode] --> iosPregSummaryGen["Pregnancy summary (generated) 🤖"]
+  iosPphub[Postpartum hub] --> iosPregSummaryGen
+  iosPregSummaryGen --> iosReportView[View source]
+```
+
+### Meal suggestions — F-038
+```mermaid
+flowchart TD
+  iosTtc[Preconception] --> iosMealSuggest["Meal suggestions 🔮"]
+  iosPphub[Postpartum hub] --> iosMealSuggest
+```
+
+### Micronutrient tracking — F-039
+```mermaid
+flowchart TD
+  iosYou[You hub] --> iosMicroTrack["Micronutrient tracking 🔮"]
+```
+
+### Blood investigations tracker — F-047
+```mermaid
+flowchart TD
+  iosReports[Reports library] --> iosBloodLabs["Blood labs tracker 🟡"]
+  iosBloodLabs --> iosReportView[View source]
+```
+
+### Regulated AI hold gate — F-045
+```mermaid
+flowchart TD
+  iosYou[You hub] --> iosAiHold["Regulated AI hold ⏸️"]
+  iosAiHold --> iosYou
+  webOps[Ops dashboard] --> webAiHold["Web Regulated AI hold ⏸️"]
+  webAiHold --> webOps
+```
+
+## 16. V1 fence
 
 ```mermaid
 flowchart LR
