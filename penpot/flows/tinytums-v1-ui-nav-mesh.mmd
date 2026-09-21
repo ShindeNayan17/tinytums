@@ -1,6 +1,6 @@
 %% TinyTums V1 — full Penpot screen nav mesh
 %% Source: tinytums-v1-ui-map.json
-%% 160 screens, 201 actions
+%% 169 screens, 221 actions
 %% [xd] = cross-device  ? = showIf  skip = skipIf
 flowchart TB
   subgraph iOS_auth [iOS auth]
@@ -15,6 +15,7 @@ flowchart TB
     iosDashHero["Dashboard hero"]
     iosDashTtc["Dashboard TTC"]
     iosDashPp["Dashboard postpartum"]
+    iosDashLoss["Dashboard pregnancy loss"]
     iosNoObgy["No primary OBGY"]
     iosObgyPrompt["Primary OBGY prompt"]
     iosAccess["Clinic access"]
@@ -28,6 +29,15 @@ flowchart TB
     iosTasks["Tasks due"]
     iosNotifications["Notifications"]
   end
+  subgraph iOS_gates [iOS gates p02]
+    iosPreconceptionGate["Preconception · gate"]
+    iosMealIdeasGate["Meal ideas · gate"]
+    iosPostpartumGate["Postpartum hub · gate"]
+    iosChildHomeGate["Child home · gate"]
+    iosWeightGate["Weight · gate"]
+    iosGlucoseGate["Glucose · gate"]
+    iosFindCareGate["Find care · gate"]
+  end
   subgraph iOS_you [iOS you]
     iosYou["You hub"]
     iosProfile["Profile"]
@@ -40,6 +50,7 @@ flowchart TB
     iosPreg["Pregnancy episode"]
     iosPregSummaryGen["Pregnancy summary (generated)"]
     iosPphub["Postpartum hub"]
+    iosRecoverySymptoms["Recovery & symptoms"]
     iosBreastfeed["Breastfeeding log"]
     iosFamilyPlan["Family planning"]
     iosMealSuggest["Meal suggestions"]
@@ -455,3 +466,37 @@ flowchart TB
   iosAiHold -->|"Back"| iosYou
   webOps -->|"Clinical AI (held)"| webAiHold
   webAiHold -->|"Back"| webOps
+
+  %% New: Pregnancy loss dashboard + gate boards (Sep 2026)
+  iosPregnancyLoss -->|"Continue to home"| iosDashLoss
+  iosDashLoss -->|"Sensitive details chip"| iosSensitiveOutcome
+  iosDashLoss -->|"Find care chip"| iosFindCareGate
+
+  %% Dashboard chip → gate edges
+  iosDashHero -->|"Weight chip"| iosWeightGate
+  iosDashHero -->|"Glucose chip"| iosGlucoseGate
+  iosDashTtc -->|"Preconception chip"| iosPreconceptionGate
+  iosDashTtc -->|"Meal ideas chip"| iosMealIdeasGate
+  iosDashPp -->|"Aarav home chip"| iosChildHomeGate
+  iosDashPp -->|"Postpartum chip"| iosPostpartumGate
+
+  %% Gate → canonical destination edges
+  iosPreconceptionGate -->|"Back"| iosDashTtc
+  iosPreconceptionGate -->|"Continue"| iosTtc
+  iosMealIdeasGate -->|"Back"| iosDashTtc
+  iosMealIdeasGate -->|"Continue"| iosMealSuggest
+  iosPostpartumGate -->|"Back"| iosDashPp
+  iosPostpartumGate -->|"Continue"| iosPphub
+  iosChildHomeGate -->|"Back"| iosDashPp
+  iosChildHomeGate -->|"Continue"| iosChildHome
+  iosWeightGate -->|"Back"| iosDashHero
+  iosWeightGate -->|"Continue"| iosWeight
+  iosGlucoseGate -->|"Back"| iosDashHero
+  iosGlucoseGate -->|"Continue"| iosGlucose
+  iosFindCareGate -->|"Back"| iosDashLoss
+  iosFindCareGate -->|"Continue"| iosSearchH
+
+  %% Postpartum hub restacked cards
+  iosPphub -->|"Recovery & symptoms"| iosRecoverySymptoms
+  iosPphub -->|"Nutrition & weight"| iosMealSuggest
+  iosPphub -->|"Menstrual return"| iosTtc

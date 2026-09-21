@@ -8,7 +8,30 @@ Legend: edge = tap/action. `[xd]` = iOS ↔ web. `?` = showIf. `skip` = skipIf.
 
 ## New screens (Sep 2026)
 
-20 screens added (14 + 6 extended scope):
+29 screens added (14 + 6 extended scope + 9 new):
+
+### Mother Home boards with enriched dashboards (p02)
+Four themed dashboards with cream/paper/rose/teal and aligned peach secondary chips:
+- `iosDashHero` — iOS / Dashboard hero (pregnant) — chips: Weight, Glucose
+- `iosDashTtc` — iOS / Dashboard TTC — chips: Preconception, Meal ideas
+- `iosDashPp` — iOS / Dashboard postpartum — chips: Aarav home, Postpartum; Family planning in Care network card
+- `iosDashLoss` — iOS / Dashboard pregnancy loss (NEW) — chips: Sensitive details, Find care
+
+### Same-page gate boards (p02)
+Penpot Play uses same-page navigate-to; gates link to canonical destinations on other pages:
+- `iosPreconceptionGate` — iOS / Preconception · gate → iosTtc (p03)
+- `iosMealIdeasGate` — iOS / Meal ideas · gate → iosMealSuggest (p03)
+- `iosPostpartumGate` — iOS / Postpartum hub · gate → iosPphub (p03)
+- `iosChildHomeGate` — iOS / Child home · gate → iosChildHome (p05)
+- `iosWeightGate` — iOS / Weight · gate → iosWeight (p04)
+- `iosGlucoseGate` — iOS / Glucose · gate → iosGlucose (p04)
+- `iosFindCareGate` — iOS / Find care · gate → iosSearchH (p06)
+
+### Postpartum hub restacked (p03)
+- `iosRecoverySymptoms` — iOS / Recovery & symptoms (NEW)
+- Cards: Recovery & symptoms, Nutrition & weight, Menstrual return, Breastfeeding support, Contraception / future planning (68px tall, 12px gap)
+
+### Prior screens (14 + 6 extended scope)
 - `webInstCreate` — Web / Institution create (p10)
 - `webStaffAccept` — Web / Staff invite accept (p08)
 - `iosEntitlement` — iOS / Subscription entitlement (p02)
@@ -36,8 +59,6 @@ Legend: edge = tap/action. `[xd]` = iOS ↔ web. `?` = showIf. `skip` = skipIf.
 
 ### No inbound (hard to reach unless tab/deep link)
 - `iosSplash` — iOS / Splash
-- `iosWeight` — iOS / Weight
-- `iosGlucose` — iOS / Glucose
 - `iosCgInviteExpired` — iOS / Caregiver invite expired
 - `webLogin` — Web / Login
 - `webAdmin` — Web / Admin staff
@@ -47,7 +68,6 @@ Legend: edge = tap/action. `[xd]` = iOS ↔ web. `?` = showIf. `skip` = skipIf.
 - `webInstCreate` — Web / Institution create (via webDashAdmin)
 
 ### No outbound (dead ends — OK if terminal)
-- `iosPregnancyLoss` — iOS / Pregnancy loss state (now has edge to iosSensitiveOutcome)
 - `iosTasks` — iOS / Tasks due
 - `iosNotifications` — iOS / Notifications
 - `iosPrivacy` — iOS / Privacy consent
@@ -153,6 +173,7 @@ flowchart TB
     iosDashHero["Dashboard hero"]
     iosDashTtc["Dashboard TTC"]
     iosDashPp["Dashboard postpartum"]
+    iosDashLoss["Dashboard pregnancy loss"]
     iosNoObgy["No primary OBGY"]
     iosAccess["Clinic access"]
     iosAccessDenied["Access denied"]
@@ -161,6 +182,15 @@ flowchart TB
     iosDeliveryChild["Delivery → child"]
     iosTasks["Tasks due"]
     iosNotifications["Notifications"]
+  end
+  subgraph iOS_gates [iOS gates p02]
+    iosPreconceptionGate["Preconception · gate"]
+    iosMealIdeasGate["Meal ideas · gate"]
+    iosPostpartumGate["Postpartum hub · gate"]
+    iosChildHomeGate["Child home · gate"]
+    iosWeightGate["Weight · gate"]
+    iosGlucoseGate["Glucose · gate"]
+    iosFindCareGate["Find care · gate"]
   end
   subgraph iOS_you [iOS you]
     iosYou["You hub"]
@@ -173,6 +203,7 @@ flowchart TB
     iosTtc["Preconception"]
     iosPreg["Pregnancy episode"]
     iosPphub["Postpartum hub"]
+    iosRecoverySymptoms["Recovery & symptoms"]
     iosPeriod["Period tracking"]
   end
   subgraph iOS_track [iOS track]
@@ -531,4 +562,38 @@ flowchart TB
   webChart -->|"Care contexts"| webCareContexts
   webChart -->|"Request outside records"| webHiuRequest
   iosInvite -->|"Lead sent (legacy edge)"| iosDashHero
+
+  %% New: Pregnancy loss dashboard + gate boards (Sep 2026)
+  iosPregnancyLoss -->|"Continue to home"| iosDashLoss
+  iosDashLoss -->|"Sensitive details chip"| iosSensitiveOutcome
+  iosDashLoss -->|"Find care chip"| iosFindCareGate
+
+  %% Dashboard chip → gate edges
+  iosDashHero -->|"Weight chip"| iosWeightGate
+  iosDashHero -->|"Glucose chip"| iosGlucoseGate
+  iosDashTtc -->|"Preconception chip"| iosPreconceptionGate
+  iosDashTtc -->|"Meal ideas chip"| iosMealIdeasGate
+  iosDashPp -->|"Aarav home chip"| iosChildHomeGate
+  iosDashPp -->|"Postpartum chip"| iosPostpartumGate
+
+  %% Gate → canonical destination edges
+  iosPreconceptionGate -->|"Back"| iosDashTtc
+  iosPreconceptionGate -->|"Continue"| iosTtc
+  iosMealIdeasGate -->|"Back"| iosDashTtc
+  iosMealIdeasGate -->|"Continue"| iosMealSuggest
+  iosPostpartumGate -->|"Back"| iosDashPp
+  iosPostpartumGate -->|"Continue"| iosPphub
+  iosChildHomeGate -->|"Back"| iosDashPp
+  iosChildHomeGate -->|"Continue"| iosChildHome
+  iosWeightGate -->|"Back"| iosDashHero
+  iosWeightGate -->|"Continue"| iosWeight
+  iosGlucoseGate -->|"Back"| iosDashHero
+  iosGlucoseGate -->|"Continue"| iosGlucose
+  iosFindCareGate -->|"Back"| iosDashLoss
+  iosFindCareGate -->|"Continue"| iosSearchH
+
+  %% Postpartum hub restacked cards
+  iosPphub -->|"Recovery & symptoms"| iosRecoverySymptoms
+  iosPphub -->|"Nutrition & weight"| iosMealSuggest
+  iosPphub -->|"Menstrual return"| iosTtc
 ```

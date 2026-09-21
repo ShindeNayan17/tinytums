@@ -353,7 +353,69 @@ flowchart TD
   iosObgyPrompt --> iosDashHero
 ```
 
-## 15. Extended scope (F-037, F-038, F-039, F-045, F-047)
+## 15. Mother Home dashboards with themed chips (Sep 2026)
+
+Four enriched dashboards with cream/paper/rose/teal theme and aligned peach secondary chips:
+
+### Dashboard variants
+```mermaid
+flowchart TD
+  iosState[State picker] --> iosDashHero[Dashboard hero - pregnant]
+  iosState --> iosDashTtc[Dashboard TTC]
+  iosState --> iosDashPp[Dashboard postpartum]
+  iosState --> iosPregnancyLoss[Pregnancy loss state]
+  iosPregnancyLoss --> iosDashLoss[Dashboard pregnancy loss]
+```
+
+### Home chips → gate boards
+Penpot cannot persist cross-page navigate-to. Home chips use same-page gate boards:
+
+```mermaid
+flowchart TD
+  subgraph Dashboard_hero [Dashboard hero chips]
+    iosDashHero[Dashboard hero] --> iosWeightGate[Weight · gate]
+    iosDashHero --> iosGlucoseGate[Glucose · gate]
+  end
+  subgraph Dashboard_TTC [Dashboard TTC chips]
+    iosDashTtc[Dashboard TTC] --> iosPreconceptionGate[Preconception · gate]
+    iosDashTtc --> iosMealIdeasGate[Meal ideas · gate]
+  end
+  subgraph Dashboard_postpartum [Dashboard postpartum chips]
+    iosDashPp[Dashboard postpartum] --> iosChildHomeGate[Child home · gate]
+    iosDashPp --> iosPostpartumGate[Postpartum hub · gate]
+  end
+  subgraph Dashboard_loss [Dashboard pregnancy loss chips]
+    iosDashLoss[Dashboard pregnancy loss] --> iosSensitiveOutcome[Sensitive outcome]
+    iosDashLoss --> iosFindCareGate[Find care · gate]
+  end
+```
+
+### Gate → canonical destination
+```mermaid
+flowchart LR
+  iosPreconceptionGate[Preconception · gate] --> iosTtc[iOS / Preconception p03]
+  iosMealIdeasGate[Meal ideas · gate] --> iosMealSuggest[iOS / Meal suggestions p03]
+  iosPostpartumGate[Postpartum hub · gate] --> iosPphub[iOS / Postpartum hub p03]
+  iosChildHomeGate[Child home · gate] --> iosChildHome[iOS / Child home p05]
+  iosWeightGate[Weight · gate] --> iosWeight[iOS / Weight p04]
+  iosGlucoseGate[Glucose · gate] --> iosGlucose[iOS / Glucose p04]
+  iosFindCareGate[Find care · gate] --> iosSearchH[iOS / Search hospital p06]
+```
+
+## 16. Postpartum hub restacked (Sep 2026)
+
+Cards evenly spaced (68px tall, 12px gap). Tap targets:
+
+```mermaid
+flowchart TD
+  iosPphub[Postpartum hub] --> iosRecoverySymptoms[Recovery & symptoms]
+  iosPphub --> iosMealSuggest[Nutrition & weight → Meal suggestions]
+  iosPphub --> iosTtc[Menstrual return → Preconception]
+  iosPphub --> iosBreastfeed[Breastfeeding support → Breastfeeding log]
+  iosPphub --> iosFamilyPlan[Contraception / future planning → Family planning]
+```
+
+## 17. Extended scope (F-037, F-038, F-039, F-045, F-047)
 
 Badges: `future` | `aiAssist` | `regulatoryHold` | `amber`
 
@@ -394,7 +456,7 @@ flowchart TD
   webAiHold --> webOps
 ```
 
-## 16. V1 fence
+## 18. V1 fence
 
 ```mermaid
 flowchart LR

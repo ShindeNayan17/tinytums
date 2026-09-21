@@ -3,7 +3,7 @@
   "generated": "2026-09-20",
   "note": "Penpot Play interactions. Same-page edges are wired on master boards. Cross-page edges cannot use navigate-to (Penpot page-scoped). Walk A/B/C are cloned onto dedicated pages so those demos click end-to-end. Clones are copies — edit the original board, then re-clone if the walk must match.",
   "counts": {
-    "samePageWired": 113,
+    "samePageWired": 134,
     "skippedCrossPage": 26,
     "walkLinks": 15
   },
@@ -191,7 +191,27 @@
     { "page": "04 iOS Track + mind", "from": "iOS / You hub", "to": "iOS / Micronutrient tracking", "via": "Micronutrients", "anchor": "row", "status": "pending", "badge": "future" },
     { "page": "04 iOS Track + mind", "from": "iOS / Reports library", "to": "iOS / Blood investigations tracker", "via": "Lab tracker", "anchor": "btn", "status": "pending", "badge": "amber" },
     { "page": "08 Web Ops + patients", "from": "Web / Ops dashboard", "to": "Web / Regulated AI hold", "via": "Clinical AI (held)", "anchor": "menu", "status": "pending", "badge": "regulatoryHold" },
-    { "page": "08 Web Ops + patients", "from": "Web / Regulated AI hold", "to": "Web / Ops dashboard", "via": "Back", "anchor": "btn", "status": "pending", "badge": "regulatoryHold" }
+    { "page": "08 Web Ops + patients", "from": "Web / Regulated AI hold", "to": "Web / Ops dashboard", "via": "Back", "anchor": "btn", "status": "pending", "badge": "regulatoryHold" },
+
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Pregnancy loss state", "to": "iOS / Dashboard pregnancy loss", "via": "Continue to home", "anchor": "btn", "status": "pending", "note": "New pregnancy loss dashboard" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Dashboard pregnancy loss", "to": "iOS / Sensitive outcome", "via": "Sensitive details chip", "anchor": "chip", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Dashboard pregnancy loss", "to": "iOS / Find care · gate", "via": "Find care chip", "anchor": "chip", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Dashboard hero", "to": "iOS / Weight · gate", "via": "Weight chip", "anchor": "chip", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Dashboard hero", "to": "iOS / Glucose · gate", "via": "Glucose chip", "anchor": "chip", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Dashboard TTC", "to": "iOS / Preconception · gate", "via": "Preconception chip", "anchor": "chip", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Dashboard TTC", "to": "iOS / Meal ideas · gate", "via": "Meal ideas chip", "anchor": "chip", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Dashboard postpartum", "to": "iOS / Child home · gate", "via": "Aarav home chip", "anchor": "chip", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Dashboard postpartum", "to": "iOS / Postpartum hub · gate", "via": "Postpartum chip", "anchor": "chip", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Preconception · gate", "to": "iOS / Dashboard TTC", "via": "Back", "anchor": "btn", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Meal ideas · gate", "to": "iOS / Dashboard TTC", "via": "Back", "anchor": "btn", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Postpartum hub · gate", "to": "iOS / Dashboard postpartum", "via": "Back", "anchor": "btn", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Child home · gate", "to": "iOS / Dashboard postpartum", "via": "Back", "anchor": "btn", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Weight · gate", "to": "iOS / Dashboard hero", "via": "Back", "anchor": "btn", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Glucose · gate", "to": "iOS / Dashboard hero", "via": "Back", "anchor": "btn", "status": "pending" },
+    { "page": "02 iOS Onboarding + Home", "from": "iOS / Find care · gate", "to": "iOS / Dashboard pregnancy loss", "via": "Back", "anchor": "btn", "status": "pending" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / Postpartum hub", "to": "iOS / Recovery & symptoms", "via": "Recovery & symptoms", "anchor": "card", "status": "pending", "note": "Postpartum hub restacked cards" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / Postpartum hub", "to": "iOS / Meal suggestions", "via": "Nutrition & weight", "anchor": "card", "status": "pending" },
+    { "page": "03 iOS Mother journeys", "from": "iOS / Postpartum hub", "to": "iOS / Preconception", "via": "Menstrual return", "anchor": "card", "status": "pending" }
   ],
   "skippedCrossPage": [
     { "from": "iOS / Pregnancy episode", "to": "iOS / Delivery → child", "via": "Delivery", "fromPage": "03 iOS Mother journeys", "toPage": "02 iOS Onboarding + Home", "status": "skipped-cross-page" },
